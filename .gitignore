@@ -1,0 +1,40 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+dist/
+build/
+.venv/
+venv/
+
+# UV
+.python-version
+uv.lock
+
+# ML artifacts (regenerable via pipeline)
+ml/data/raw/
+ml/artifacts/
+ml/data/processed/moocleus_panel.json
+ml/data/processed/trait_weights/
+ml/data/processed/simulated/
+
+# Keep demo_data.json (app needs it to run without pipeline)
+!ml/data/processed/demo_data.json
+
+# Jupyter
+.ipynb_checkpoints/
+
+# IDE
+.vscode/
+.idea/
+
+# Claude Code
+.claude/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# Environment
+.env
+.env.local

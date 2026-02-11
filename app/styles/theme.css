@@ -1,0 +1,201 @@
+/* Moocleus Genomics — Nucleus-inspired theme */
+
+:root {
+    --bg-primary: #FBF8F3;
+    --bg-card: #FFFFFF;
+    --accent-primary: #2D6A4F;
+    --accent-secondary: #719C9E;
+    --text-primary: #423C31;
+    --text-secondary: #8B8578;
+    --success: #40916C;
+    --warning: #E9C46A;
+    --danger: #E76F51;
+    --border: #E8E4DD;
+}
+
+/* Hero section */
+.hero-container {
+    text-align: center;
+    padding: 3rem 2rem;
+    margin-bottom: 2rem;
+}
+
+.hero-container h1 {
+    font-size: 3rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    margin-bottom: 0.5rem;
+    letter-spacing: -0.02em;
+}
+
+.hero-tagline {
+    font-size: 1.4rem;
+    color: var(--accent-secondary);
+    font-style: italic;
+    margin-bottom: 1rem;
+}
+
+.hero-description {
+    font-size: 1.1rem;
+    color: var(--text-secondary);
+    max-width: 600px;
+    margin: 0 auto;
+    line-height: 1.6;
+}
+
+/* Feature cards */
+.feature-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: center;
+    transition: box-shadow 0.2s;
+    height: 100%;
+}
+
+.feature-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.feature-card h3 {
+    color: var(--accent-primary);
+    margin-bottom: 0.5rem;
+    font-size: 1.1rem;
+}
+
+.feature-card p {
+    color: var(--text-secondary);
+    font-size: 0.9rem;
+    line-height: 1.5;
+}
+
+.feature-icon {
+    font-size: 2rem;
+    margin-bottom: 0.75rem;
+}
+
+/* Embryo cards */
+.embryo-card {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 1.25rem;
+    margin-bottom: 1rem;
+    transition: box-shadow 0.2s;
+}
+
+.embryo-card:hover {
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08);
+}
+
+.embryo-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 0.75rem;
+}
+
+.embryo-name {
+    font-weight: 600;
+    font-size: 1.1rem;
+    color: var(--text-primary);
+}
+
+.embryo-score {
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--accent-primary);
+    text-align: center;
+    margin: 0.5rem 0;
+}
+
+.embryo-parents {
+    font-size: 0.85rem;
+    color: var(--text-secondary);
+    text-align: center;
+}
+
+/* Badge styles */
+.badge {
+    display: inline-block;
+    padding: 0.2rem 0.6rem;
+    border-radius: 20px;
+    font-size: 0.75rem;
+    font-weight: 600;
+    letter-spacing: 0.03em;
+}
+
+.badge-top-pick {
+    background: var(--success);
+    color: white;
+}
+
+.badge-above-average {
+    background: var(--accent-secondary);
+    color: white;
+}
+
+.badge-average {
+    background: #D4D0C8;
+    color: var(--text-primary);
+}
+
+/* Metric card enhancements */
+[data-testid="stMetric"] {
+    background: var(--bg-card);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 1rem;
+}
+
+/* Section dividers */
+.section-divider {
+    border: none;
+    border-top: 1px solid var(--border);
+    margin: 2rem 0;
+}
+
+/* Footer */
+.tech-footer {
+    text-align: center;
+    color: var(--text-secondary);
+    font-size: 0.85rem;
+    padding: 2rem 0 1rem;
+    border-top: 1px solid var(--border);
+    margin-top: 3rem;
+}
+
+/* Carrier status indicators */
+.carrier-clear {
+    color: var(--success);
+    font-weight: 600;
+}
+
+.carrier-positive {
+    color: var(--danger);
+    font-weight: 600;
+}
+
+/* About page comparison table */
+.comparison-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 1rem 0;
+}
+
+.comparison-table th {
+    background: var(--accent-primary);
+    color: white;
+    padding: 0.75rem;
+    text-align: left;
+}
+
+.comparison-table td {
+    padding: 0.6rem 0.75rem;
+    border-bottom: 1px solid var(--border);
+}
+
+.comparison-table tr:hover {
+    background: #f5f3ee;
+}
