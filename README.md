@@ -31,7 +31,7 @@ This is a bovine analog of [Nucleus Genomics](https://mynucleus.com/) — a dire
 Demo data is included — the app works immediately after install:
 
 ```bash
-git clone https://github.com/YOUR_USERNAME/Moocleus-Genomics.git
+git clone https://github.com/EnesYilmazcode/Moocleus-Genomics.git
 cd Moocleus-Genomics
 pip install -e .
 python -m streamlit run app/Home.py
