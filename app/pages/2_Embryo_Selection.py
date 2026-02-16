@@ -30,7 +30,7 @@ st.title("Embryo Selection")
 st.caption(f"{len(embryos)} embryos from {max(e['mating_group'] for e in embryos)} matings")
 
 # ── Sort Controls ─────────────────────────────────────────────
-sort_options = {"Moocleus Score": "moocleus_score"}
+sort_options = {"Overall Score": "moocleus_score"}
 for tk, ti in trait_config.items():
     sort_options[ti["name"]] = tk
 
@@ -60,15 +60,16 @@ st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
 
 # ── Comparison Mode ───────────────────────────────────────────
 st.subheader("Compare Embryos")
-embryo_names = [e["name"] for e in embryos]
-selected_names = st.multiselect(
+embryo_labels = [f"{e['id']} — {e['moocleus_score']:.0f}" for e in embryos_sorted]
+selected_labels = st.multiselect(
     "Select 2-4 embryos to compare",
-    embryo_names,
+    embryo_labels,
     max_selections=4,
 )
 
-if len(selected_names) >= 2:
-    selected_embryos = [e for e in embryos if e["name"] in selected_names]
+if len(selected_labels) >= 2:
+    selected_ids = {lbl.split(" — ")[0] for lbl in selected_labels}
+    selected_embryos = [e for e in embryos if e["id"] in selected_ids]
     trait_names = {k: v["name"] for k, v in trait_config.items()}
 
     # Overlaid radar chart
@@ -92,5 +93,12 @@ if len(selected_names) >= 2:
                         selected_embryos, tk, ti["name"], herd_mean,
                     )
                     st.plotly_chart(fig, use_container_width=True)
-elif len(selected_names) == 1:
+elif len(selected_labels) == 1:
     st.info("Select at least 2 embryos to compare.")
+
+# ── Navigation ───────────────────────────────────────────────
+st.markdown("---")
+col_left, col_center, col_right = st.columns([1, 1, 1])
+with col_center:
+    if st.button("View Detailed Embryo Report \u2192", type="primary", use_container_width=True):
+        st.switch_page("pages/3_Embryo_Report.py")

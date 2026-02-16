@@ -52,24 +52,28 @@ st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
 # ── Data Sources ──────────────────────────────────────────────
 st.subheader("Data Sources")
 st.markdown("""
-All datasets used are publicly available:
+**Primary Data: 1000 Bull Genomes Project (PRJEB42783)**
+
+Moocleus is built on *real whole-genome sequencing data* from the public 1000 Bull Genomes
+Project (ENA accession PRJEB42783), which contains WGS from 2,703 bulls across multiple breeds
+including Bos taurus, Bos indicus, and crossbreeds. In this demo:
+- **Real genotypes** from 1,842 bulls (ChrMT mitochondrial variants used for validation)
+- **Real allele frequencies** used to simulate the 15K SNP panel
+- **Real QTL positions** mapped to published trait-SNP associations
+- Phenotypes are necessarily simulated (no phenotype data in raw WGS), but grounded in
+  published heritabilities and known genetic architecture
+
+**Supporting Databases:**
 
 - **[Animal QTLdb](https://www.animalgenome.org/cgi-bin/QTLdb/index)** \u2014
-  5,920+ cattle QTL/association data points with trait-SNP mappings. Provides
-  the genetic architecture for realistic phenotype simulation.
+  5,920+ cattle QTL/association data points. Provides trait-SNP effect directions
+  for realistic phenotype simulation.
 
 - **[Illumina BovineHD BeadChip](https://www.illumina.com/products/by-type/microarray-kits/bovinehd.html)** \u2014
-  777,962 SNP positions across all 29 autosomes + X. Defines the "chip" used to
-  build the Moocleus Panel.
-
-- **[Bovine Genome Variation Database (BGVD)](http://animal.omics.pro/code/index.php/BosVar)** \u2014
-  ~60.44M SNPs with minor allele frequencies across 54 cattle breeds.
+  777,962 SNP positions defining the standard genotyping chip framework.
 
 - **[Bovine Genome Database (BGD)](https://bovinegenome.elsiklab.missouri.edu/)** \u2014
-  ARS-UCD2.0 assembly with gene annotations, QTL data, and RNA-seq tracks.
-
-- **[1000 Bull Genomes Project](https://db.cngb.org/)** \u2014
-  2,703 whole-genome sequences from diverse cattle breeds, 84M SNPs.
+  ARS-UCD2.0 assembly with gene annotations and QTL data.
 """)
 
 st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
@@ -131,3 +135,14 @@ st.markdown("""
     Moocleus Genomics &mdash; Breed Better. Know More.
 </div>
 """, unsafe_allow_html=True)
+
+# ── Navigation ────────────────────────────────────────────────
+st.markdown("---")
+nav_col1, nav_col2, nav_col3 = st.columns([1, 1, 1])
+with nav_col1:
+    if st.button("← Back to Model Performance", use_container_width=True):
+        st.switch_page("pages/4_Model_Performance.py")
+
+with nav_col3:
+    if st.button("Back to Home →", use_container_width=True):
+        st.switch_page("pages/../Home.py")

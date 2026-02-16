@@ -122,3 +122,14 @@ with st.expander("Tier 3: deepGBLUP \u2014 Deep Learning Hybrid"):
 
     **Reference:** Lee, J. et al. (2023). *Genetics Selection Evolution* 55:25.
     """)
+
+# ── Navigation ────────────────────────────────────────────────
+st.markdown("---")
+nav_col1, nav_col2, nav_col3 = st.columns([1, 1, 1])
+with nav_col1:
+    if st.button("← Back to Embryo Report", use_container_width=True):
+        st.switch_page("pages/3_Embryo_Report.py")
+
+with nav_col3:
+    if st.button("About →", use_container_width=True):
+        st.switch_page("pages/5_About.py")

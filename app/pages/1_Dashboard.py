@@ -75,3 +75,10 @@ for row_start in range(0, len(trait_keys), 3):
                     ti["unit"],
                 )
                 st.plotly_chart(fig, use_container_width=True)
+
+# ── Navigation ───────────────────────────────────────────────
+st.markdown("---")
+col_left, col_center, col_right = st.columns([1, 1, 1])
+with col_center:
+    if st.button("View Embryo Candidates \u2192", type="primary", use_container_width=True):
+        st.switch_page("pages/2_Embryo_Selection.py")

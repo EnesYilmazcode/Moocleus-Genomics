@@ -28,9 +28,26 @@ embryos = data["embryos"]
 # ── Embryo Selector ───────────────────────────────────────────
 st.title("Embryo Report")
 
-embryo_options = {f"{e['name']} ({e['id']})": e for e in embryos}
-selected_key = st.selectbox("Select Embryo", list(embryo_options.keys()))
-embryo = embryo_options[selected_key]
+# Sort embryos by score (descending) for selector, but keep original order for ID mapping
+embryos_sorted = sorted(embryos, key=lambda e: e["moocleus_score"], reverse=True)
+embryo_options = {e['id']: e for e in embryos_sorted}
+
+# Check if a specific embryo was selected from the grid
+default_index = 0
+if "selected_embryo_id" in st.session_state and st.session_state["selected_embryo_id"] in embryo_options:
+    # Find the index of the selected embryo in the sorted list
+    selected_id = st.session_state["selected_embryo_id"]
+    default_index = list(embryo_options.keys()).index(selected_id)
+    # Clear the session state so it doesn't persist on refresh
+    del st.session_state["selected_embryo_id"]
+
+selected_id = st.selectbox(
+    "Select Embryo",
+    list(embryo_options.keys()),
+    index=default_index,  # Default to highest-scoring OR previously selected
+    format_func=lambda eid: f"{eid} — {embryo_options[eid]['moocleus_score']:.0f} ({embryo_options[eid]['badge']})"
+)
+embryo = embryo_options[selected_id]
 
 # ── Score + Identity ──────────────────────────────────────────
 col1, col2 = st.columns([1, 2])
@@ -47,8 +64,8 @@ with col2:
     }.get(embryo["badge"], "badge-average")
 
     st.markdown(f"""
-    ### {embryo['name']} &mdash; {embryo['id']}
-    **Sire:** {embryo['sire_id']} &nbsp;|&nbsp; **Dam:** {embryo['dam_id']}
+    ### {embryo['id']}
+    **Parent 1:** {embryo['sire_id']} &nbsp;|&nbsp; **Parent 2:** {embryo['dam_id']}
     &nbsp;|&nbsp; **Mating Group:** {embryo['mating_group']}
 
     <span class="badge {badge_class}">{embryo['badge']}</span>
@@ -126,3 +143,14 @@ st.markdown('<hr class="section-divider">', unsafe_allow_html=True)
 st.metric("Inbreeding Coefficient (F)", f"{embryo['inbreeding_coeff']:.4f}")
 if embryo["inbreeding_coeff"] > 0.0625:
     st.warning("Elevated inbreeding detected (F > 0.0625). Consider alternative mating.")
+
+# ── Navigation ────────────────────────────────────────────────
+st.markdown("---")
+nav_col1, nav_col2, nav_col3 = st.columns([1, 1, 1])
+with nav_col1:
+    if st.button("← Back to Candidates", use_container_width=True):
+        st.switch_page("pages/2_Embryo_Selection.py")
+
+with nav_col3:
+    if st.button("Model Performance →", use_container_width=True):
+        st.switch_page("pages/4_Model_Performance.py")
